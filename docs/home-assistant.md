@@ -1,19 +1,27 @@
 # Home Assistant
 
-## Configurazione attuale (vecchio PB-68, da dismettere)
+## Configurazione attuale (dal 28/10/2026)
 
-- `binary_sensor.impulso_contatore_acqua` — sensore MQTT in YAML su `rtl_433/rpi3/events`. Riconosce solo `{25}<codice ON>` = ON e `{25}<codice OFF>` = OFF.
-- Automazione **contatore acqua**: +1 su `counter.litri_acqua_totali` a ogni OFF→ON.
-- `sensor.lettura_reale_contatore` (template).
-- Automazione `contatore_acqua_test_notifica`: Telegram a ogni impulso se `input_boolean.test_contatore_acqua` è attivo.
+Entità create tramite **MQTT discovery**: le configurazioni sono messaggi `retain` pubblicati dal Pi su `homeassistant/sensor/contatore_acqua_433/*/config`. Dispositivo: **Contatore acqua**.
 
-Con il conteggio cumulativo queste entità diventano inutili. Riferimento: [homeassistant/legacy/README.md](../homeassistant/legacy/README.md).
+| Entità | Contenuto |
+|---|---|
+| `sensor.contatore_acqua_litri_totali` | Litri, `device_class: water`, `state_class: total_increasing`. Template sul topic `.../ContatoreAcquaV2/data`: controlla preambolo e checksum; se il frame non è valido mantiene il valore precedente. Oggi 1 L/impulso, come la catena vecchia |
+| `sensor.contatore_acqua_batteria_valore_grezzo` | Byte batteria grezzo |
+| `sensor.contatore_acqua_ultimo_segnale` | Ora dell'ultimo frame ricevuto |
 
-## Configurazione nuova (da scrivere quando il frame è definitivo)
+- Plancia **consumi-acqua** riscritta sui sensori nuovi: stato, statistiche di oggi, settimana e mese, grafico di 7 giorni. Il pulsante di azzeramento non c'è più, perché il contatore è cumulativo.
+- Il 28/10/2026 storico e statistiche di litri e batteria sono stati azzerati, per togliere i dati finti del firmware di test (contatore +1 ogni ~3,3 s). Vanno ripuliti di nuovo prima di installare il firmware vero.
+- Le configurazioni di discovery **non sono ancora nel repo**: vanno esportate qui. La bozza [homeassistant/BOZZA_mqtt_contatore_acqua.yaml](../homeassistant/BOZZA_mqtt_contatore_acqua.yaml) leggeva `rtl_433/rpi3/events` ed è superata.
 
-- Sensore MQTT che legge il frame da `rtl_433/rpi3/events`, verifica preambolo, ID e checksum, ed estrae il conteggio.
-- Litri = `conteggio × risoluzione + offset`; offset in un `input_number`, `state_class: total_increasing`.
-- Sensore separato per la tensione della batteria.
+## Da fare
+
+- Sensore della tensione batteria in volt (dipende dal blocco 5 del firmware).
 - Allarme se manca il messaggio di vita oltre una soglia.
+- Offset (lettura del contatore) e litri/impulso definitivi in base alla lancetta scelta.
 
-Bozza non testata: [homeassistant/BOZZA_mqtt_contatore_acqua.yaml](../homeassistant/BOZZA_mqtt_contatore_acqua.yaml).
+## Configurazione storica (PB-68, in dismissione)
+
+Rimosse il 28/10/2026: le automazioni **contatore acqua** e `contatore_acqua_test_notifica`, l'helper `counter.litri_acqua_totali` e `input_boolean.test_contatore_acqua`.
+
+Restano nello YAML di HA, da togliere a mano: `binary_sensor.impulso_contatore_acqua` e `sensor.lettura_reale_contatore`. Riferimento: [homeassistant/legacy/README.md](../homeassistant/legacy/README.md).

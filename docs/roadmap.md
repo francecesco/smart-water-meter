@@ -16,9 +16,13 @@
 - [ ] Misura della corrente in sleep tramite J1
 
 ## Ricezione e Home Assistant
-- [ ] Decoder `-X` definitivo con `bits=64` e `repeats>=2`
+- [x] Decoder `-X` definitivo con `bits=64` e `repeats>=2` (`ContatoreAcquaV2`, 28/10/2026)
 - [ ] `-s 250k` sul Pi 1
-- [ ] Nuovo sensore HA (litri, batteria, messaggio di vita) e dismissione delle entità PB-68
+- [x] Nuovo sensore HA litri e batteria grezza (MQTT discovery, 28/10/2026)
+- [ ] Esportare nel repo le configurazioni di discovery
+- [ ] Batteria in volt e allarme sul messaggio di vita
+- [ ] Togliere dallo YAML di HA `binary_sensor.impulso_contatore_acqua` e `sensor.lettura_reale_contatore`
+- [ ] Sottotensione del Pi 1 (alimentatore o hub USB alimentato)
 - [ ] Verifica litri/impulso con la lancetta scelta
 
 ## Da valutare

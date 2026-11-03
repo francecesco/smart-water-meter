@@ -10,7 +10,7 @@ Il formato del frame è **congelato**: decoder rtl_433 e sensore Home Assistant 
 - **10 ms** di pausa tra le ripetizioni. Il frame viene ripetuto **3 volte**.
 - Bit inviati **MSB first**.
 
-> Nota per il decoder: in rtl_433 `OOK_PWM` interpreta per default l'impulso corto come 1. Con questa codifica (corto = 0) serve l'opzione `invert`, altrimenti i byte risultano invertiti (0xAA → 0x55). Da verificare sul decoder validato in garage.
+> Nota per il decoder: in rtl_433 `OOK_PWM` interpreta per default l'impulso corto come 1. Con questa codifica (corto = 0) serve l'opzione `invert`, altrimenti i byte risultano invertiti (0xAA → 0x55). Verificato il 28/10/2026: grezzo `55a5fffffd574b47` → invertito `AA 5A 000002A8 B4 B8`, checksum corretto. Il decoder installato usa `invert`.
 
 ## Struttura del frame (64 bit)
 

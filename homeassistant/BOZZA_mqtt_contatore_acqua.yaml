@@ -1,3 +1,6 @@
+# SUPERATA (28/10/2026): in HA sono attivi i sensori creati via MQTT discovery,
+# che leggono rtl_433/rpi3/devices/ContatoreAcquaV2/data. Vedi docs/home-assistant.md.
+#
 # BOZZA NON TESTATA — validare con un payload reale di rtl_433/rpi3/events.
 # Frame: AA 5A C3 C2 C1 C0 BATT CHK  (docs/protocollo-radio.md)
 # Si assume che rtl_433 pubblichi il campo "codes" (es. "{64}aa5a0000002ab4..."),

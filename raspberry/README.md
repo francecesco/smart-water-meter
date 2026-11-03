@@ -6,7 +6,7 @@ Documentazione completa: [docs/ricezione-raspberry.md](../docs/ricezione-raspber
 |---|---|
 | `rtl433.service` | Copia di riferimento dell'unità systemd, con credenziali spostate in un file d'ambiente |
 | `rtl433.env.example` | Modello del file `/etc/rtl433.env` (il file reale non va nel repo) |
-| `decoder/contatore_acqua.conf` | **Bozza** del decoder flex per il frame a 64 bit |
+| `decoder/contatore_acqua.conf` | Decoder flex `ContatoreAcquaV2` per il frame a 64 bit (validato e installato) |
 
 ## Installare l'unità di riferimento
 

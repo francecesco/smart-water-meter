@@ -18,9 +18,10 @@ RTL-SDR → rtl_433 (Raspberry Pi) → MQTT → Home Assistant
 | Contrasto IR bianco / rosso / nero (carta) | ✅ validato |
 | Rilevazione dinamica a velocità reale | ⏳ da fare (al contatore) |
 | Radio Pro Mini → STX882 → RTL-SDR → rtl_433 | ✅ validato (in garage, vicino al Pi) |
-| rtl_433 → MQTT → Home Assistant | ✅ verificato il 23/10/2026 |
+| Decoder rtl_433 per il frame a 64 bit | ✅ installato il 28/10/2026 |
+| rtl_433 → MQTT → Home Assistant | ✅ verificato il 28/10/2026 col frame nuovo |
 | Firmware definitivo (conteggio, sleep, EEPROM, batteria) | ⏳ da scrivere |
-| Sensore HA per il nuovo frame | ⏳ da scrivere (dopo frame definitivo) |
+| Sensore HA per il nuovo frame | ✅ litri e batteria grezza (MQTT discovery); ⏳ volt e allarme |
 | Montaggio meccanico (supporto 3D) | ⏳ da progettare |
 
 Dettaglio in [docs/roadmap.md](docs/roadmap.md).

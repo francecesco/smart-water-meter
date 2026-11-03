@@ -23,13 +23,18 @@
 | Prova | Esito |
 |---|---|
 | Firmware `tx_test`, ricezione dallo studio | Nessun pacchetto (distanza/muri) |
-| Firmware `tx_test`, breadboard in garage vicino al Pi | ✅ pacchetti ricevuti e decodificati |
+| Firmware `tx_test`, breadboard in garage vicino al Pi (28/10/2026) | ✅ 64 bit, 3 ripetizioni ogni ~3 s; checksum verificato |
+| Decoder `ContatoreAcquaV2` installato nel servizio (28/10/2026) | ✅ campi `impulsi`, `batteria_raw`, `checksum` sul broker |
 
 ## Catena a valle (23/10/2026)
 - Impulso simulato pubblicato su MQTT con i codici veri → `counter.litri_acqua_totali` da 0 a 1. ✅
 - rtl_433 → broker → Home Assistant. ✅
 
+## Catena a valle con il frame nuovo (28/10/2026)
+- Frame a conteggio 0 (`aa5a00000000b40e`) pubblicato sul broker → `sensor.contatore_acqua_litri_totali` = 0. ✅
+
 ## Problemi incontrati
 - Seriale illeggibile: processore impostato a 16 MHz invece di 8 MHz.
 - Upload bloccato: CP2102 senza DTR → reset manuale all'inizio di "Caricamento…".
+- Sottotensione del Pi 1 (`get_throttled` 0x50005, 25/10/2026): la RTL-SDR si scollegava (`error -71`) fino a sparire.
 - Misure di resistenze incoerenti: fondoscala sbagliato e multimetro inaffidabile (sostituito).

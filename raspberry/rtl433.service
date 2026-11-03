@@ -1,5 +1,6 @@
 # Copia di riferimento di /etc/systemd/system/rtl433.service
-# Decoder ancora quello storico del PB-68: va sostituito con decoder/contatore_acqua.conf
+# Decoder: ContatoreAcquaV2 (frame a 64 bit, docs/protocollo-radio.md), installato il 28/10/2026.
+# Il vecchio decoder del PB-68 (n=ContatoreAcqua, s=430,l=1150,r=11000) è stato rimosso lo stesso giorno.
 [Unit]
 Description=rtl_433 -> MQTT (contatore acqua)
 After=network-online.target
@@ -8,7 +9,7 @@ Wants=network-online.target
 [Service]
 EnvironmentFile=/etc/rtl433.env
 ExecStart=/usr/local/bin/rtl_433 -f 433.92M -s 1024k -g 49.6 -Y autolevel \
-  -X 'n=ContatoreAcqua,m=OOK_PWM,s=430,l=1150,r=11000' \
+  -X 'n=ContatoreAcquaV2,m=OOK_PWM,s=500,l=1500,r=15000,g=1200,bits=64,invert,match={16}aa5a,repeats>=2,unique,get=@16:{32}:impulsi,get=@48:{8}:batteria_raw,get=@56:{8}:checksum' \
   -F mqtt://${MQTT_HOST}:${MQTT_PORT},user=${MQTT_USER},pass=${MQTT_PASS},retain=1 \
   -F log
 Restart=always
