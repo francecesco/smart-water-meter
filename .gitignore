@@ -1,0 +1,11 @@
+# Segreti: mai nel repo
+*.env
+!*.env.example
+secrets.yaml
+
+# Build / IDE
+build/
+*.hex
+*.elf
+.vscode/
+.DS_Store

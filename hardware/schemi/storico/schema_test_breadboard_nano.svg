@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 410" width="100%">
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;}
+ .title{font-size:14px;font-weight:600;fill:#1f2933;}
+ .sub{font-size:11px;fill:#6b7580;}
+ .pin{font-size:11px;fill:#3a4149;}
+ .lbl{font-size:11px;fill:#556270;}
+ .rval{font-size:11px;font-weight:600;fill:#2b333b;}
+ .w5{stroke:#d1493f;stroke-width:2;fill:none;stroke-linecap:round;}
+ .wg{stroke:#333333;stroke-width:2;fill:none;stroke-linecap:round;}
+ .ws{stroke:#5b6570;stroke-width:2;fill:none;stroke-linecap:round;}
+ .dot{fill:#5b6570;}
+</style>
+<rect x="0" y="0" width="720" height="410" fill="#ffffff"/>
+<rect x="1" y="1" width="718" height="408" fill="none" stroke="#e5e7eb"/>
+
+<!-- Nano -->
+<rect x="70" y="120" width="170" height="230" rx="8" fill="#efeafd" stroke="#6b4fce" stroke-width="1"/>
+<text class="title" x="155" y="146" text-anchor="middle">Arduino Nano</text>
+<text class="sub" x="155" y="164" text-anchor="middle">alimentato via USB</text>
+<text class="pin" x="232" y="204" text-anchor="end">5V</text>
+<text class="pin" x="232" y="249" text-anchor="end">D7</text>
+<text class="pin" x="232" y="294" text-anchor="end">A0</text>
+<text class="pin" x="232" y="334" text-anchor="end">GND</text>
+
+<!-- TCRT5000 -->
+<rect x="480" y="120" width="170" height="230" rx="8" fill="#e6f4f1" stroke="#2c8a7a" stroke-width="1"/>
+<text class="title" x="565" y="146" text-anchor="middle">TCRT5000</text>
+<text class="sub" x="565" y="164" text-anchor="middle">sensore IR</text>
+<text class="pin" x="488" y="204">PT&#8209;C</text>
+<text class="pin" x="488" y="249">LED&#8209;A</text>
+<text class="pin" x="488" y="294">PT&#8209;E</text>
+<text class="pin" x="488" y="334">LED&#8209;K</text>
+
+<!-- 5V wire -->
+<line class="w5" x1="240" y1="200" x2="480" y2="200"/>
+<!-- D7 -> R1 -> LED-A -->
+<line class="ws" x1="240" y1="245" x2="480" y2="245"/>
+<rect x="335" y="233" width="50" height="24" rx="3" fill="#ffffff" stroke="#888888" stroke-width="1"/>
+<text class="rval" x="360" y="245" text-anchor="middle" dominant-baseline="middle">R</text>
+<text class="lbl" x="360" y="223" text-anchor="middle">150&#8211;470 &#937;</text>
+<!-- A0 -> PT-E -->
+<line class="ws" x1="240" y1="290" x2="480" y2="290"/>
+<!-- GND -> LED-K -->
+<line class="wg" x1="240" y1="330" x2="480" y2="330"/>
+<!-- 10k from PT-E node to GND -->
+<circle class="dot" cx="430" cy="290" r="2.6"/>
+<circle class="dot" cx="430" cy="330" r="2.6"/>
+<line class="ws" x1="430" y1="290" x2="430" y2="330"/>
+<rect x="418" y="298" width="24" height="24" rx="3" fill="#ffffff" stroke="#888888" stroke-width="1"/>
+<text class="lbl" x="450" y="310" dominant-baseline="middle">10 k&#937;</text>
+
+<!-- legend -->
+<line class="w5" x1="70" y1="386" x2="100" y2="386"/>
+<text class="lbl" x="106" y="386" dominant-baseline="middle">5V</text>
+<line class="wg" x1="150" y1="386" x2="180" y2="386"/>
+<text class="lbl" x="186" y="386" dominant-baseline="middle">GND</text>
+<line class="ws" x1="240" y1="386" x2="270" y2="386"/>
+<text class="lbl" x="276" y="386" dominant-baseline="middle">segnale</text>
+</svg>

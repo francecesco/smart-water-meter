@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="100%">
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;}
+ .title{font-size:14px;font-weight:600;fill:#1f2933;}
+ .sub{font-size:11px;fill:#6b7580;}
+ .pin{font-size:11px;fill:#3a4149;}
+ .lbl{font-size:11px;fill:#556270;}
+ .net{font-size:11px;font-weight:700;fill:#9a6a00;}
+ .wire{stroke:#5b6570;stroke-width:1.5;fill:none;stroke-linecap:round;}
+ .dot{fill:#5b6570;}
+</style>
+<rect x="0" y="0" width="720" height="380" fill="#ffffff"/>
+<rect x="1" y="1" width="718" height="378" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+
+<!-- TCRT5000 -->
+<rect x="50" y="64" width="150" height="150" rx="8" fill="#e6f4f1" stroke="#2c8a7a" stroke-width="1"/>
+<text class="title" x="125" y="84" text-anchor="middle">TCRT5000</text>
+<text class="sub" x="125" y="100" text-anchor="middle">(nudo)</text>
+<text class="pin" x="193" y="104" text-anchor="end">LED A</text>
+<text class="pin" x="193" y="130" text-anchor="end">LED K</text>
+<text class="pin" x="193" y="156" text-anchor="end">PT C</text>
+<text class="pin" x="193" y="194" text-anchor="end">PT E</text>
+
+<!-- Pro Mini -->
+<rect x="290" y="64" width="180" height="185" rx="8" fill="#efeafd" stroke="#6b4fce" stroke-width="1"/>
+<text class="title" x="380" y="86" text-anchor="middle">Arduino Pro Mini</text>
+<text class="sub" x="380" y="104" text-anchor="middle">3,3 V · reg. rimosso</text>
+<text class="pin" x="300" y="104">D7</text>
+<text class="pin" x="300" y="156">D8</text>
+<text class="pin" x="300" y="194">A0</text>
+<text class="pin" x="460" y="114" text-anchor="end">D4</text>
+<text class="pin" x="345" y="240" text-anchor="middle">VCC</text>
+<text class="pin" x="415" y="240" text-anchor="middle">GND</text>
+
+<!-- STX882 -->
+<rect x="560" y="64" width="140" height="150" rx="8" fill="#fdecea" stroke="#d1493f" stroke-width="1"/>
+<text class="title" x="630" y="84" text-anchor="middle">STX882</text>
+<text class="sub" x="630" y="100" text-anchor="middle">TX 433 SAW</text>
+<text class="pin" x="570" y="114">DATA</text>
+<text class="pin" x="570" y="149">VCC</text>
+<text class="pin" x="570" y="179">GND</text>
+
+<!-- Power -->
+<rect x="270" y="290" width="220" height="70" rx="8" fill="#fef4e0" stroke="#c98a1e" stroke-width="1"/>
+<text class="title" x="380" y="318" text-anchor="middle">Alimentazione</text>
+<text class="sub" x="380" y="338" text-anchor="middle">TP4056 + LiPo 3,7 V 1S</text>
+<text class="net" x="316" y="304" text-anchor="middle">Vbatt +</text>
+<text class="net" x="452" y="304" text-anchor="middle">GND −</text>
+
+<!-- WIRES -->
+<line class="wire" x1="290" y1="100" x2="200" y2="100"/>
+<text class="lbl" x="245" y="92" text-anchor="middle">220 Ω</text>
+
+<line class="wire" x1="200" y1="126" x2="228" y2="126"/>
+<text class="net" x="234" y="126" dominant-baseline="middle">GND</text>
+
+<line class="wire" x1="290" y1="152" x2="200" y2="152"/>
+<line class="wire" x1="290" y1="190" x2="200" y2="190"/>
+<circle class="dot" cx="245" cy="190" r="2.5"/>
+<line class="wire" x1="245" y1="190" x2="245" y2="226"/>
+<text class="lbl" x="253" y="224" dominant-baseline="middle">10 kΩ → GND</text>
+
+<line class="wire" x1="470" y1="110" x2="560" y2="110"/>
+<text class="lbl" x="515" y="102" text-anchor="middle">dati OOK</text>
+
+<line class="wire" x1="630" y1="64" x2="630" y2="42"/>
+<text class="lbl" x="630" y="34" text-anchor="middle">antenna λ/4 (~17 cm)</text>
+
+<line class="wire" x1="560" y1="149" x2="536" y2="149"/>
+<text class="net" x="530" y="149" text-anchor="end" dominant-baseline="middle">Vbatt</text>
+<line class="wire" x1="560" y1="179" x2="536" y2="179"/>
+<text class="net" x="530" y="179" text-anchor="end" dominant-baseline="middle">GND</text>
+<text class="lbl" x="630" y="232" text-anchor="middle">100 µF ∥ 100 nF</text>
+
+<line class="wire" x1="345" y1="249" x2="345" y2="266"/>
+<text class="net" x="345" y="277" text-anchor="middle">Vbatt</text>
+<line class="wire" x1="415" y1="249" x2="415" y2="266"/>
+<text class="net" x="415" y="277" text-anchor="middle">GND</text>
+</svg>

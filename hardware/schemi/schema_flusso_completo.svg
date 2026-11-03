@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 405" width="100%">
+<style>
+ text{font-family:Arial,Helvetica,sans-serif;}
+ .gtitle{font-size:12px;font-weight:600;fill:#8a919a;}
+ .ntitle{font-size:13px;font-weight:600;fill:#1f2933;}
+ .nsub{font-size:10px;fill:#6b7580;}
+ .lbl{font-size:10px;fill:#556270;}
+ .rlbl{font-size:11px;font-weight:600;fill:#2b333b;}
+ .flow{stroke:#5b6570;stroke-width:2;fill:none;stroke-linecap:round;}
+ .radio{stroke:#5b6570;stroke-width:2;fill:none;stroke-linecap:round;stroke-dasharray:6 4;}
+</style>
+<defs>
+ <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+   <path d="M2 1 L8 5 L2 9" fill="none" stroke="#5b6570" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+ </marker>
+</defs>
+<rect x="0" y="0" width="720" height="405" fill="#ffffff"/>
+
+<!-- GROUP A: dispositivo a batteria -->
+<rect x="15" y="40" width="690" height="180" rx="10" fill="none" stroke="#b8bec6" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text class="gtitle" x="30" y="60">DISPOSITIVO A BATTERIA — al contatore</text>
+
+<rect x="40" y="95" width="140" height="52" rx="8" fill="#e6f4f1" stroke="#2c8a7a" stroke-width="1"/>
+<text class="ntitle" x="110" y="116" text-anchor="middle">TCRT5000</text>
+<text class="nsub" x="110" y="133" text-anchor="middle">sensore IR</text>
+
+<rect x="290" y="95" width="140" height="52" rx="8" fill="#efeafd" stroke="#6b4fce" stroke-width="1"/>
+<text class="ntitle" x="360" y="116" text-anchor="middle">Pro Mini 3,3 V</text>
+<text class="nsub" x="360" y="133" text-anchor="middle">conta + trasmette</text>
+
+<rect x="540" y="95" width="140" height="52" rx="8" fill="#fdecea" stroke="#d1493f" stroke-width="1"/>
+<text class="ntitle" x="610" y="116" text-anchor="middle">TX 433 MHz</text>
+<text class="nsub" x="610" y="133" text-anchor="middle">modulo radio</text>
+<line class="flow" x1="610" y1="95" x2="610" y2="72"/>
+<text class="lbl" x="610" y="64" text-anchor="middle">antenna</text>
+
+<rect x="40" y="175" width="290" height="38" rx="8" fill="#fef4e0" stroke="#c98a1e" stroke-width="1"/>
+<text class="ntitle" x="185" y="190" text-anchor="middle">Alimentazione</text>
+<text class="nsub" x="185" y="205" text-anchor="middle">LiPo 3,7 V + TP4056 (ricarica)</text>
+
+<line class="flow" x1="180" y1="121" x2="290" y2="121" marker-end="url(#a)"/>
+<line class="flow" x1="430" y1="121" x2="540" y2="121" marker-end="url(#a)"/>
+<line class="flow" x1="310" y1="173" x2="310" y2="149" marker-end="url(#a)"/>
+
+<!-- radio link -->
+<line class="radio" x1="610" y1="147" x2="610" y2="295" marker-end="url(#a)"/>
+<text class="rlbl" x="620" y="205">433,92 MHz</text>
+<text class="lbl" x="620" y="220">via radio</text>
+
+<!-- GROUP B: centralina esistente -->
+<rect x="15" y="240" width="690" height="150" rx="10" fill="none" stroke="#b8bec6" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text class="gtitle" x="30" y="260">CENTRALINA ESISTENTE — Raspberry Pi + Home Assistant</text>
+
+<rect x="520" y="295" width="170" height="54" rx="8" fill="#eef1f4" stroke="#9aa3ad" stroke-width="1"/>
+<text class="ntitle" x="605" y="317" text-anchor="middle">Raspberry Pi</text>
+<text class="nsub" x="605" y="334" text-anchor="middle">+ RTL-SDR</text>
+
+<rect x="350" y="295" width="140" height="54" rx="8" fill="#eef1f4" stroke="#9aa3ad" stroke-width="1"/>
+<text class="ntitle" x="420" y="317" text-anchor="middle">rtl_433</text>
+<text class="nsub" x="420" y="334" text-anchor="middle">decoder -X</text>
+
+<rect x="200" y="295" width="120" height="54" rx="8" fill="#eef1f4" stroke="#9aa3ad" stroke-width="1"/>
+<text class="ntitle" x="260" y="317" text-anchor="middle">MQTT</text>
+<text class="nsub" x="260" y="334" text-anchor="middle">broker</text>
+
+<rect x="30" y="295" width="150" height="54" rx="8" fill="#e8f0fe" stroke="#3b6fd1" stroke-width="1"/>
+<text class="ntitle" x="105" y="317" text-anchor="middle">Home Assistant</text>
+<text class="nsub" x="105" y="334" text-anchor="middle">dashboard</text>
+
+<line class="flow" x1="520" y1="322" x2="490" y2="322" marker-end="url(#a)"/>
+<line class="flow" x1="350" y1="322" x2="320" y2="322" marker-end="url(#a)"/>
+<line class="flow" x1="200" y1="322" x2="180" y2="322" marker-end="url(#a)"/>
+</svg>

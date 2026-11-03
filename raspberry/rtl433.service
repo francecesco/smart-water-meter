@@ -1,0 +1,18 @@
+# Copia di riferimento di /etc/systemd/system/rtl433.service
+# Decoder ancora quello storico del PB-68: va sostituito con decoder/contatore_acqua.conf
+[Unit]
+Description=rtl_433 -> MQTT (contatore acqua)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/rtl433.env
+ExecStart=/usr/local/bin/rtl_433 -f 433.92M -s 1024k -g 49.6 -Y autolevel \
+  -X 'n=ContatoreAcqua,m=OOK_PWM,s=430,l=1150,r=11000' \
+  -F mqtt://${MQTT_HOST}:${MQTT_PORT},user=${MQTT_USER},pass=${MQTT_PASS},retain=1 \
+  -F log
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

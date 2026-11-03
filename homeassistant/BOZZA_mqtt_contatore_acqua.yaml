@@ -1,0 +1,63 @@
+# BOZZA NON TESTATA — validare con un payload reale di rtl_433/rpi3/events.
+# Frame: AA 5A C3 C2 C1 C0 BATT CHK  (docs/protocollo-radio.md)
+# Si assume che rtl_433 pubblichi il campo "codes" (es. "{64}aa5a0000002ab4..."),
+# come avviene oggi per il PB-68.
+
+input_number:
+  contatore_acqua_offset_litri:
+    name: Offset contatore acqua
+    min: 0
+    max: 10000000
+    step: 0.1
+    unit_of_measurement: L
+    mode: box
+  contatore_acqua_litri_per_impulso:
+    name: Litri per impulso
+    min: 0.001
+    max: 10
+    step: 0.001
+    unit_of_measurement: L
+    mode: box
+
+mqtt:
+  sensor:
+    - name: Contatore acqua impulsi
+      unique_id: contatore_acqua_impulsi
+      state_topic: rtl_433/rpi3/events
+      state_class: total_increasing
+      # Messaggi di altri dispositivi o con checksum errato: mantiene il valore precedente
+      value_template: >-
+        {% set c = value_json.codes[0] if value_json.codes is defined and value_json.codes | length > 0 else '' %}
+        {% set h = c.split('}')[-1] | lower %}
+        {% if value_json.model | default('') == 'ContatoreAcqua' and h | length == 16 and h[0:4] == 'aa5a' %}
+          {% set ns = namespace(s=0) %}
+          {% for i in range(1, 7) %}{% set ns.s = ns.s + (h[i*2:i*2+2] | int(base=16)) %}{% endfor %}
+          {% if ns.s % 256 == (h[14:16] | int(base=16)) %}{{ h[4:12] | int(base=16) }}
+          {% else %}{{ states('sensor.contatore_acqua_impulsi') }}{% endif %}
+        {% else %}{{ states('sensor.contatore_acqua_impulsi') }}{% endif %}
+
+    - name: Contatore acqua batteria raw
+      unique_id: contatore_acqua_batteria_raw
+      state_topic: rtl_433/rpi3/events
+      # Byte grezzo: la conversione in volt va definita insieme al firmware (blocco 5)
+      value_template: >-
+        {% set c = value_json.codes[0] if value_json.codes is defined and value_json.codes | length > 0 else '' %}
+        {% set h = c.split('}')[-1] | lower %}
+        {% if value_json.model | default('') == 'ContatoreAcqua' and h | length == 16 and h[0:4] == 'aa5a' %}{{ h[12:14] | int(base=16) }}
+        {% else %}{{ states('sensor.contatore_acqua_batteria_raw') }}{% endif %}
+
+template:
+  - sensor:
+      - name: Contatore acqua litri
+        unique_id: contatore_acqua_litri
+        unit_of_measurement: L
+        device_class: water
+        state_class: total_increasing
+        availability: "{{ has_value('sensor.contatore_acqua_impulsi') }}"
+        state: >-
+          {{ (states('sensor.contatore_acqua_impulsi') | float(0)
+              * states('input_number.contatore_acqua_litri_per_impulso') | float(0)
+              + states('input_number.contatore_acqua_offset_litri') | float(0)) | round(1) }}
+
+# Da aggiungere: automazione di allarme se non arriva il messaggio di vita
+# (es. nessun aggiornamento di sensor.contatore_acqua_batteria_raw da > 2 h).
